@@ -42,50 +42,678 @@
 			<div class="slides">
 				<section>
 					<h1>The Secret History of Russian Verbs</h1>
-					<h3>Data Mining the Russian National Corpus</h3>
-					<p>
+					<!-- <h4>Data Mining the Russian National Corpus</h4> -->
                         <small>
                             <p>
-                                <a href="http://www.menzenski.com">Matt Menzenski</a> / <a href="http://twitter.com/menzenski">@menzenski</a>
+								<a href="http://www.menzenski.com">Matt Menzenski</a> <!-- <br/> <a href="http://twitter.com/menzenski">@menzenski</a> -->
                             </p>
                             <p>
                                 Department of Slavic Languages &amp; Literatures <br/>
                                 University of Kansas
                             </p>
+							<p>
+								<a href="http://www.menzenski.com/slides-kucrees-2015">www.menzenski.com/slides-kucrees-2015</a>
+							</p>
                         </small>
-                    </p>
                     <p>
                         <a href="https://creativecommons.org/licenses/by/4.0/">
                             <img width="50" height="50" style="border:none; box-shadow:none;" data-src="images/cc.large.png" alt="Creative Commons logo"/>
                             <img width="50" height="50" style="border:none; box-shadow:none;" data-src="images/by.large.png" alt="Creative Commons Attribution logo"/>
                         </a>
                     </p>
-				</section>
+        </section>
 
-				<section>
-        <h2>Hello There</h2>
+        <section>
+        	<h3>Goals of this Talk</h3>
 
-        <iframe width="800" height="600" data-src="http://www.themoscowtimes.com/opinion/article/taking-a-walk-on-the-wild-side/537912.html" style="-webkit-transform:scale(0.8);-moz-transform-scale(0.8);" data-preview-link>
-          <p><img width="400" data-src="images/moscowtimes01.png" alt="Excerpt from a Moscow Times article on the Russian verb guljat"/></p>
-          <p><img width="400" data-src="images/moscowtimes02.png" alt="Excerpt from a Moscow Times article on the Russian verb guljat"/></p>
+			<ul>
+        		<li>Describe the category of 'Intensive-Resultative' verbs in
+					Russian</li>
+				<li>Sketch out a theoretical model which accounts for their
+					behavior</li>
+				<li>Introduce a method for uncovering the history of these
+					verbs using data mining techniques</li>
+	  		</ul>
+
+        </section>
+
+        <section>
+        	<h3>Russian Verbs are Complicated</h3>
+
+        	<p style="text-align:left;">Russian Intensive-Resultative verbs
+				are some of the most interesting in the language, and can pack
+				 a lot of meaning into a single word. Compare:</p>
+
+        	<ul>
+				<li><em>zagovorit’sja</em> 'become absorbed in conversation'
+					(cf. <em>govorit’</em> 'speak')</li>
+
+         		<li><em>izolgat’sja</em> 'lie to the point of becoming an
+					incorrigible liar' (cf. <em>lgat’</em> 'lie')</li>
+
+        		<li><em>dorabotat’sja</em> 'work to the point of an adverse
+					result' (cf. <em>rabotat’</em> 'work')</li>
+			</ul>
+
+        </section>
+
+		<section>
+			<h3>Some Types of Intensive-Resultatives</h3>
+
+			<small>
+				<table style="width:100%;">
+					<tr>
+						<td style="width:130px;"><em>do- -sja</em></td>
+						<td>'perform an activity to the point of negative
+							consequences'</td>
+					</tr>
+					<tr>
+						<td><em>ot- -sja</em></td>
+						<td>'avoid something undesirable or dangerous by
+							engaging in the activity' <br/>
+							'free oneself from an activity by ending it'</td>
+					</tr>
+					<tr>
+						<td><em>pro- -sja</em></td>
+						<td>'return to a normal state by ending an activity'
+							<br/> 'perform an activity to the point of
+							ruining oneself or losing one's money/property'</td>
+					</tr>
+					<tr>
+						<td><em>iz(o)- -sja</em></td>
+						<td>'acquire a habit or permanent characteristics
+							through the repeated performance of a negative
+							activity'</td>
+					</tr>
+					<tr>
+						<td><em>o-/ob(o)- -sja</em></td>
+						<td>'due to awkwardness or imprecision, execute an
+							activity incorrectly' <br/> 'get used to, adapt
+							oneself to an activity'</td>
+					</tr>
+					<tr>
+						<td><em>pri- -sja</em></td>
+						<td>'get used to an activity involving a certain
+							entity by the prolonged continuation or
+							repetition of that activity'</td>
+					</tr>
+					<tr>
+						<td><em>s(o)- -sja</em></td>
+						<td>'reach harmony/concord in the performance of a
+							joint activity' <br/> 'reach an understanding with
+							someone through an activity'</td>
+					</tr>
+					<tr>
+						<td><em>pod(o)- -sja</em></td>
+						<td>'curry someone's favor by performing an activity'</td>
+					</tr>
+					<tr>
+						<td><em>v(o)- -sja</em></td>
+						<td>'get the hang of an activity, get used to performing
+							an activity, become accustomed to an activity to
+							the point of a propensity for it'</td>
+					</tr>
+				</table>
+
+				<p>From Rutkowska (1981).</p>
+			</small>
+
+		</section>
+
+        <section>
+        	<h3>Building Intensive-Resultatives</h3>
+
+        	<p style="text-align:left;">The preceding examples give some clue
+				about the structure of these verbs: they're formed with both a
+				<b>prefix</b> and a <b>suffix</b>:</p>
+
+			<ul>
+				<li><em>za-govorit’-sja</em> 'become absorbed in conversation'</li>
+
+        		<li><em>izo-lgat’-sja</em> 'lie to the point of becoming an incorrigible liar'</li>
+
+        		<li><em>do-rabotat’-sja</em> 'work to the point of an adverse result'</li>
+			</ul>
+
+        </section>
+
+		<section>
+			<h3>Structure of Intensive-Resultatives</h3>
+
+			<p style="text-align:left;">The suffix <em>-sja</em>
+				(/<em>-s’</em>) used in the
+				formation of intensive-resultative verbs also serves as a
+				marker of reflexivity.</p>
+
+			<p style="text-align:left;">
+				<em>On odevaet<b>sja</b></em> 'He dresses himself' <br/>
+				<em>On odevaet sebja</em> 'He dresses himself' (emphatic) <br/>
+				<em>On odevaet rebenka</em> 'He dresses his child'
+			</p>
+
+		</section>
+
+		<section>
+        	<h3>These Verbs do Actually get Used</h3>
+
+        <iframe width="730" height="500" data-src="http://www.themoscowtimes.com/opinion/article/taking-a-walk-on-the-wild-side/537912.html" style="-webkit-transform:scale(0.95);-moz-transform-scale(0.95);" data-preview-link>
+          <p><img width="400" height="300" data-src="images/moscowtimes01.png" alt="Excerpt from a Moscow Times article on the Russian verb guljat"/></p>
+          <p><img width="400" height="300" data-src="images/moscowtimes02.png" alt="Excerpt from a Moscow Times article on the Russian verb guljat"/></p>
         </iframe>
-				</section>
 
-                <section data-markdown>
-                    ## Markdown slide
+		</section>
 
-                    This is a test slide in Markdown.
+        <section>
+        <h3>Classifying Events</h3>
 
-                </section>
+        <p style="text-align:left;">Vendler (1957) describes four fundamental
+        situation types (<em>states</em>, <em>activities</em>,
+        <em>accomplishments</em>, and <em>achievements</em>).
 
-                <section>
-                    <h2>References</h2>
+        <p style="text-align:left;">Following Comrie (1976) and Smith (1997), a
+        fifth fundamental type (<em>semelfactives</em>) was added to this
+        typology.</p>
 
-                    <small>
-                        <p>Croft, William. 2012. <em>Verbs: Aspect and Causal Structure.</em> Oxford: Oxford University Press.</p>
+        </section>
 
-                    </small>
-                </section>
+        <section>
+        <h3>Classifying Events</h3>
+
+        <p style="text-align:left;">
+          <b>Durative</b> situations have extension in time.
+        </p>
+
+        <p style="text-align:left;">
+          <b>Dynamic</b> situations involve change over time.
+        </p>
+
+        <p style="text-align:left;">
+          <b>Telic</b> situations have a 'natural endpoint' (and are thus 'bounded').
+        </p>
+
+		<small>
+		<p style="text-align:left;">The basic situation types may be
+			described via the combination of these three features
+			(Dickey in press: 339).</p>
+
+        <table style="width:100%;">
+          <tr>
+            <td>States</td>
+            <td>Activities</td>
+            <td>Accomplishments</td>
+            <td>Achievements</td>
+            <td>Semelfactives</td>
+          </tr>
+          <tr>
+            <td>+Durative</td>
+            <td>+Durative</td>
+            <td>+Durative</td>
+            <td>–Durative</td>
+            <td>–Durative</td>
+          </tr>
+          <tr>
+            <td>–Dynamic</td>
+            <td>+Dynamic</td>
+            <td>+Dynamic</td>
+            <td>+Dynamic</td>
+            <td>+Dynamic</td>
+          </tr>
+          <tr>
+            <td>–Telic</td>
+            <td>–Telic</td>
+            <td>+Telic</td>
+            <td>+Telic</td>
+            <td>–Telic</td>
+          </tr>
+        </table>
+        </small>
+
+        </section>
+
+		<section>
+		<h3>Category Boundaries are Not Absolute</h3>
+
+		<p style="text-align:left;">Compare the following two sentences:
+			(Croft 2012: 54–55)</p>
+
+		<ol>
+			<li><em>I see Mount Tamalpais.</em></li>
+			<li><em>I reached the crest of the hill and saw Mount Tamalpais.</em></li>
+		</ol>
+
+		<p style="text-align:left;">Which event type does English <em>see</em>
+			belong to?</p>
+
+		<p style="text-align:left;">It appears to be a state in (1) and an
+			achievement in (2).</p>
+
+		</section>
+
+        <section>
+        <h3>Event Types in Two Dimensions</h3>
+
+		<p style="text-align:left;">Representing basic event types in two
+			dimensions can help resolve the difficulties in analyzing the
+			aspect of <em>see</em>.</p>
+
+		<p style="text-align:left;">We can imagine an event playing out over
+			two dimensions. The horizontal axis (<b>t</b>) represents time,
+			while the vertical axis (<b>q</b>) represents a change in some
+			quality.</p>
+
+		<img width="300" height="300" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileBlank.png" alt="Two-dimensional frame for aspect"/>
+
+        </section>
+
+		<section>
+		<h3>Event Types in Two Dimensions</h3>
+
+		<p style="text-align:left;">The abstracted aspectual contour for
+			<em>see</em> involves an instantaneous transition from a 'not seen'
+			state to a 'seen' state.</p>
+
+		<img width="300" height="300" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileStateAcquired.png" alt="Aspectual schema for English see"/>
+
+		<p style="text-align:left;">Parts of this aspectual contour may be
+			<b>profiled</b> at the level of an individual utterance.</p>
+
+		</section>
+
+		<section>
+		<h3>Event Types in Two Dimensions</h3>
+
+		<p style="text-align:left;">Here the event is construed as a result <b>state</b>.<p>
+
+		<p>
+			<em>I see Mount Tamalpais.</em>
+		</p>
+
+		<img width="500" height="500" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileStateAcquired01.png" alt="Result state construal for English see"/>
+
+		</section>
+
+		<section>
+		<h3>Event Types in Two Dimensions</h3>
+
+		<p style="text-align:left;">Here the event is construed as an <b>achievement</b>:
+			an instantaneous transition to a result state.<p>
+
+		<p>
+			<em>I reached the crest of the hill and saw Mount Tamalpais.</em>
+		</p>
+
+		<img width="500" height="500" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileStateAcquired02.png" alt="Achievement construal for English see"/>
+
+		</section>
+
+		<section>
+		<h3>Activities in Two Dimensions</h3>
+
+		<p style="text-align:left;">Activities are not static, but they're also
+			not progressing towards a goal.</p>
+
+		<p>
+			<em>The girls chanted</em> (Croft 2012: 61).
+		</p>
+
+		<img width="500" height="500" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileActivity01.png" alt="Activity construal for English chant"/>
+
+		</section>
+
+		<section>
+		<h3>Accomplishments in Two Dimensions</h3>
+
+		<p style="text-align:left;">Accomplishments do express a change of state,
+			so we see real change in the <b>q</b> dimension.</p>
+
+		<p>
+			<em>I ate an apple pancake</em> (Croft 2012: 62).
+		</p>
+
+		<img width="500" height="500" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileAccomplishment01.png" alt="Accomplishment construal for English eat a pancake"/>
+
+		</section>
+
+		<section>
+			<h3>The Third Dimension</h3>
+
+			<p style="text-align:left;">We've seen that events can be decomposed into two
+				dimensions: one temporal (<b>t</b>) and one qualitative
+				(<b>q</b>).</p>
+
+			<p style="text-align:left;">But further decomposition is possible.
+				Consider <em>I ate an apple pancake</em> again:</p>
+
+			<img width="500" height="500" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileAccomplishment01.png" alt="Accomplishment construal for English eat a pancake"/>
+
+		</section>
+
+		<section>
+			<h3>The Third Dimension</h3>
+
+			<p style="text-align:left;">What's undergoing the change of state
+				in the situation <em>I ate an apple pancake</em>?
+				It's not the subject.</p>
+
+			<table style="width:100%;">
+				<tr style="border:0 none;">
+					<td>the subject <em>I</em></td>
+					<td><em>an apple pancake</em></td>
+				</tr>
+				<tr>
+					<td>
+						<img width="300" height="300" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileActivity02.png" alt="Activity construal for English eat a pancake"/>
+					</td>
+					<td>
+						<img width="300" height="300" style="border:none; box-shadow:none;" data-src="images/aspect/VendlerProfileAccomplishment01.png" alt="Accomplishment construal for English eat a pancake"/>
+					</td>
+				</tr>
+			</table>
+
+		</section>
+
+		<section>
+			<h3>The Third Dimension</h3>
+
+			<p style="text-align:left;">Events with multiple participants can
+				be further decomposed.</p>
+
+			<p style="text-align:left;">There is a two-dimensional aspectual
+				contour for each participant.</p>
+
+			<p style="text-align:left;">These aspectual contours are linked
+				by a third dimension: <b>causality</b>.</p>
+
+		</section>
+
+		<section>
+
+			<small>
+				<p>
+					<em>I ate an apple pancake.</em>
+				</p>
+			</small>
+
+			<br/>
+
+			<img width="700" height="700" style="border:none; box-shadow:none;" data-src="images/aspect/MowLawn.png" alt="Three-dimensional aspectual contour for English eat an apple pancake"/>
+
+		</section>
+
+		<section>
+			<h3>Profiling in Three Dimensions</h3>
+
+			<p style="text-align:left;">The same processes of construal and
+				profiling operate in the three-dimensional model.</p>
+
+			<p style="text-align:left;">The profiled phase of the causal chain
+				includes the subject, object, and any oblique arguments in
+				between (e.g., an instrument).</p>
+
+			<p style="text-align:left;">Profiled phases are indicated with
+				solid lines; non-profiled phases with dotted lines.</p>
+
+		</section>
+
+		<section>
+
+			<small>
+				<p>
+					<em>Sue broke the coconut for Greg.</em>
+				</p>
+			</small>
+
+			<br/>
+
+			<img width="700" height="700" style="border:none; box-shadow:none;" data-src="images/aspect/Coconut.png" alt="Three-dimensional aspectual contour for English Sue broke the Coconut for Greg"/>
+
+		</section>
+
+		<section data-background="#FFC82D" data-state="centerText" >
+
+		<h1>But Wait:</h1>
+
+		<h4>What does all this have to do with Russian Intensive-Resultative verbs?</h4>
+
+		</section>
+
+		<section data-state"notCenteredText">
+		<h2>The Theory</h2>
+
+		<p style="text-align:left;">Events may be construed as bounded with
+			respect to any of the three dimensions <b>t</b>, <b>q</b>, or
+			<b>c</b>.</p>
+
+			<p style="text-align:left;"><b>t-boundedness</b> signals an event
+				delimited in time, but not construed as leading to a result state.</p>
+
+			<p style="text-align:left;"><b>q-boundedness</b> signals an event
+				delimited by the arrival of a <em>canonical</em> result state,
+				which enables the continuation of the current causal chain.</p>
+
+			<p style="text-align:left;"><b>c-boundedness</b> signals an event
+				delimited by the arrival of a <em>non-canonical</em> result
+				state, which prohibits the continuation of the current
+				causal chain.</p>
+
+		</section>
+
+		<section>
+			<h3>Boundedness and the Russian Perfective</h3>
+
+			<p style="text-align:left;"><b>t</b>-boundedness in Russian is
+				most commonly indicated with delimitative <em>po-</em>, e.g.,
+				<em>popisat’</em> 'write for a while'.</p>
+
+			<p style="text-align:left;"><b>q</b>-boundedness is most commonly
+				expressed with a 'purely perfectivizing' (or 'natural
+				perfective') prefix, e.g., <em>napisat’ pis’mo</em> 'write a
+				letter'.</p>
+
+			<p style="text-align:left;">I argue that <b>c</b>-boundedness is
+				freqently expressed by intensive-resultative constructions,
+				e.g., <em>dopisat’sja</em> 'write to the point of adverse
+				consequences'.</p>
+
+		</section>
+
+		<section>
+			<h3>Causal Chains and Reflexives</h3>
+
+			<p style="text-align:left;">Human behavior is goal-oriented, and
+				this goal-orientedness is reflected in language.</p>
+
+			<p style="text-align:left;">The goal of writing a letter is not
+				really to complete the letter (Dickey 2006: 9). Letter-writing
+				is one step taken toward a larger goal: establishing
+				communication, requesting help, expressing thanks, etc.</p>
+
+			<p style="text-align:left;">Actions taken towards these larger,
+				volitional, intentional goals, involve participants other than
+				oneself.</p>
+
+		</section>
+
+		<section>
+
+				<p>
+					<em>После этого я <b>написал письмо</b> в америкаскую
+						ассоциацию хот-роддеров (NHRA), в котором рассказал о
+						нашем клубе и попросил рекомендацию для участия в
+						финских гонках.</em> (<a href="http://search.ruscorpora.ru/search.xml?mycorp=&mysent=&mysize=&dpp=&spp=&spd=&t=100&text=lexform&mode=main&sort=gr_tagging&lang=en&req=%CD%E0%EF%E8%F1%E0%EB%20%EF%E8%F1%FC%EC%EE&p=4&docid=26923">RNC</a>)
+				</p>
+
+				<p>
+					<em>After that I <b>wrote a letter</b> to the American
+					association of hot-rodders (the NHRA), in which I told
+					about our club and requested a recommendation for
+					participation in Finnish races.</em>
+				</p>
+
+		</section>
+
+		<section>
+			<h3>Causal Chains and Reflexives</h3>
+
+			<p style="text-align:left;">If we consider only the causal
+				dimension (the <b>c</b>-axis), we see a causal chain (Langacker
+				1991: 217):</p>
+
+			<img width="750" height="250" style="border:none; box-shadow:none;" data-src="images/aspect/CoconutCausalChain01.png" alt="Canonical Causal Chain model"/>
+
+			<p style="text-align:left;">Each participant 'acts on' the next.</p>
+
+		</section>
+
+		<section>
+			<h3>Canonicity and the Causal Chain</h3>
+
+			<p style="text-align:left;">If the participants are distinct from
+				from one another, the causal chain proceeds without
+				difficulty.</p>
+
+			<p>
+				<em>I ate an apple pancake (with a fork).</em>
+			</p>
+
+			<img width="750" height="333" style="border:none; box-shadow:none;" data-src="images/aspect/CoconutCausalChainProfiled.png" alt="Causal Chain model for English I ate an apple pancake with a fork"/>
+
+		</section>
+
+		<section>
+			<h3>Canonicity and the Causal Chain</h3>
+
+			<p style="text-align:left;">But if two syntactic roles are filled
+				by the same participant, things get messy.</p>
+
+			<p>
+				<em>I dressed myself in black (clothing).</em>
+			</p>
+
+			<img width="750" height="417" style="border:none; box-shadow:none;" data-src="images/aspect/CoconutCausalChainReflexive.png" alt="Causal Chain model for English I dressed myself in black"/>
+
+		</section>
+
+		<section>
+			<h3>Canonicity and the Causal Chain</h3>
+
+			<p style="text-align:left;">The canonical left-to-right progression
+				of the causal chain is <b>interrupted</b> by a reflexive
+				construction.</p>
+
+			<p style="text-align:left;">In <em>-sja</em> constructions,
+				"the causal chain of events starts and ends with the
+				subject-referent" (Gerritsen 1990: 11).</p>
+
+			<p style="text-align:left;">We can propose a semantic shift: the
+				meaning of <b>non-canonicity</b> which is secondary in a
+				'true reflexive' construction has become the primary meaning
+				of <em>-sja</em>.</p>
+
+			<p style="text-align:left;">That is, <em>-sja</em> signals that the
+				canonical causal chain model does not apply in the current
+				context.</p>
+
+		</section>
+
+		<section>
+
+			<p>
+				<em>Или до того <b>дошутился</b>, что сам забыл, что хотел сказать?</em> (<a href="http://search.ruscorpora.ru/search.xml?mycorp=((created%253A%253E%253D%25221980%2522)%2520%2526%2526%2520(created%253A%253C%253D%25222015%2522))&mysent=&mysize=93268060&dpp=&spp=&spd=&text=lexgramm&mode=main&sort=gr_tagging&lang=en&parent1=0&level1=0&lex1=%E4%EE%F8%F3%F2%E8%F2%FC%F1%FF&gramm1=&sem1=&flags1=&sem-mod1=sem&sem-mod1=sem2&parent2=0&level2=0&min2=1&max2=1&lex2=&gramm2=&sem2=&flags2=&sem-mod2=sem&sem-mod2=sem2&docid=29901">RNC</a>)
+			</p>
+
+			<p>
+				<em>Or have you <b>joked to the point</b> that you yourself have forgotten what you wanted to say?</em>
+			</p>
+
+			<p style="text-align:left;" class="fragment">In
+				a canonical speech situation,
+				speakers don't forget what they're about to say.</p>
+
+		</section>
+
+		<section>
+			<h3>Parallels with English</h3>
+
+			<p style="text-align:left;">Tatevosov (2009) compares Russian
+				intensive-resultatives to English resultative constructions:</p>
+
+			<ul>
+				<li>
+					<em>Turisty naguljalis’</em> <br/>
+					'By walking, the tourists achieved a state of being
+					satisfied.'</li>
+				<li><em>The tourists walked themselves tired.</em></li>
+			</ul>
+
+			<p style="text-align:left;">Is this a fair comparison?</p>
+
+			<p style="text-align:left;" class="fragment">Probably.
+				Croft (2012: 321–342) describes a crosslinguistic pattern of
+				"fake reflexive resultative" constructions.</p>
+
+		</section>
+
+		<section>
+			<h3>Conclusions</h3>
+
+			<p style="text-align:left;">Russian intensive-resultative verbs
+				express non-canonicity of result.</p>
+
+			<p style="text-align:left;">This meaning of non-canonicity
+				represents a semantic extension from the reflexive meaning of
+				<em>-sja</em>.</p>
+
+		</section>
+
+        <section>
+        <h3>References</h3>
+
+          <small>
+			<p style="text-align:left;">Comrie, Bernard. 1976. <em>Aspect:
+			    An Introduction to the Study of Verbal Aspect and Related
+				Problems.</em> <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cambridge
+				Textbooks in Linguistics.
+				Cambridge: Cambridge University Press.<br/>
+            Croft, William. 2012.
+				<em>Verbs: Aspect and Causal Structure.</em>
+				Oxford: Oxford University Press.<br/>
+			Dickey, Stephen. 2006. Aspectual
+				pairs, goal orientation, and <em>po-</em> delimitatives in
+				Russian. <em>Glossos</em> 7.<br/>
+			Dickey, Stephen. In press. Lexical
+			    and grammatical aspect. <em>The Routledge Handbook of
+				Semantics</em>, <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ed.
+				by Nick Riemer, 338–354, New York. Routledge.<br/>
+			Gerritsen, Nelleke. 1990. <em>Russian Reflexive Verbs: In Search
+				of Unity in Diversity.</em> Studies in Slavic and
+				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General
+				Linguistics 15. Amsterdam: Editions Rodopi B.V.<br/>
+			Langacker, Ronald W. 1991. <em>Concept,
+				Image, and Symbol: The Cognitive Basis of Grammar.</em>
+				Cognitive <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linguistics
+				Research 1. Berlin: Mouton de Gruyter.<br/>
+			Rutkowska, Maria. 1981. <em>Nie znane
+				polszczyźnie rosyjskie prefigowane derywaty odczasownikowe z
+				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elementem</em>
+				-sja <em>typu</em> doležat’sja, priest’sja.
+				Monografie slawystyczne 43. Wrocław: Polska
+				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Akademia Nauk.<br/>
+			Smith, Carlota S. 1997. <em>The
+				Parameter of Aspect.</em> Dordrecht: Kluwer Academic
+				Publishers.<br/>
+			Tatevosov, Sergei. 2009. Building
+				intensive resultatives. Paper presented at Formal Approaches
+				to <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Slavic Linguistics:
+				18th Meeting, Ithaca, New York, 15
+				May. Available at
+				<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://darwin.philol.msu.ru/staff/people/tatevosov/intensive_resultatives.pdf">http://darwin.philol.msu.ru/staff/people/tatevosov/intensive_resultatives.pdf</a>.<br/>
+            Vendler, Zeno. 1957. Verbs and times.
+				<em>The Philosophical Review</em>
+				66.143–160.</p>
+           </small>
+
+         </section>
 
 			</div>
 
@@ -102,7 +730,9 @@
 				controls: true,
 				progress: true,
 				history: true,
-				center: true,
+				fragments: true, // allow fragments
+        		slideNumber: true,
+				center: false, // center slides vertically
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
@@ -116,6 +746,14 @@
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
+
+			Reveal.addEventListener( 'centerText', function() {
+				Reveal.configure({center: true});
+				}, false );
+
+			Reveal.addEventListener( 'notCenteredText', function() {
+				Reveal.configure({center: false});
+				}, false );
 
 		</script>
 
